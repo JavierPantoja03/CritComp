@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CritComp | Pensamiento Crítico-Computacional</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #7982ff;
+            --secondary-color: #2ecc71;
+            --accent-color: #dc84ff;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --text-color: #333;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .menu li {
+            position: relative;
+        }
+
+        .menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .menu a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--white);
+            padding: 1rem;
+        }
+
+        .hero {
+            background: url('/api/placeholder/1200/600') no-repeat center center/cover;
+            height: 500px;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+        }
+
+        .btn-accent:hover {
+            background-color: #bd22ff;
+        }
+
+        .features {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            font-size: 3rem;
+            color: var(--white);
+        }
+
+        .icon-1 {
+            background-color: var(--primary-color);
+        }
+
+        .icon-2 {
+            background-color: var(--secondary-color);
+        }
+
+        .icon-3 {
+            background-color: var(--accent-color);
+        }
+
+        .feature-content {
+            padding: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .tematicas {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .tematicas-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .tematica-tag {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            display: inline-block;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tematica-tag:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        .objetivos {
+            padding: 5rem 0;
+            background-color: var(--white);
+        }
+
+        .objetivo-card {
+            background-color: var(--light-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .objetivo-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .objetivo-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 1.5rem;
+        }
+
+        .objetivo-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        .recursos {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .tab-btn {
+            padding: 1rem 2rem;
+            background-color: var(--light-color);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .recurso-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .recurso-image {
+            height: 200px;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .recurso-content {
+            padding: 1.5rem;
+        }
+
+        .recurso-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 3rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-column h3::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-column p, .footer-column a {
+            color: #aaa;
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalOpen 0.4s ease;
+        }
+
+        @keyframes modalOpen {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--primary-color);
+            transform: rotate(90deg);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .mobile-menu {
+                display: block;
+            }
+
+            .menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--dark-color);
+                flex-direction: column;
+                display: none;
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu a {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">CritComp</div>
+            <div class="tagline">Desarrollando el Pensamiento Crítico-Computacional</div>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container nav-container">
+            <ul class="menu" id="mainMenu">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#objetivos">Objetivos</a></li>
+                <li><a href="#tematicas">Temáticas</a></li>
+                <li><a href="#recursos">Recursos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="inicio">
+        <div class="hero-content container">
+            <h1>Desarrolla tu Pensamiento Crítico y Computacional</h1>
+            <p>CritComp es una plataforma web interactiva diseñada para estudiantes, que presenta una serie de ejercicios y desafíos que requieren la aplicación conjunta del pensamiento computacional y crítico.</p>
+            <a href="#recursos" class="btn btn-primary">Explorar Recursos</a>
+            <a href="#" class="btn btn-accent" id="iniciarBtn">Iniciar Sesión</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">¿Qué ofrecemos?</h2>
+            <p class="section-subtitle">CritComp te ayuda a desarrollar habilidades esenciales para el siglo XXI combinando el pensamiento computacional con el pensamiento crítico.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-1">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Pensamiento Integrado</h3>
+                        <p>Combina el poder del pensamiento computacional y crítico para resolver problemas complejos de forma eficiente.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-2">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Ejercicios Interactivos</h3>
+                        <p>Accede a una amplia variedad de desafíos y ejercicios que ponen a prueba tu capacidad para analizar, diseñar y evaluar soluciones.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-3">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">Recursos para Educadores</h3>
+                        <p>Materiales didácticos, guías y herramientas de evaluación para integrar estas habilidades en el aula.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="objetivos" id="objetivos">
+        <div class="container">
+            <h2 class="section-title">Objetivos de Aprendizaje</h2>
+            <p class="section-subtitle">CritComp está diseñado para alcanzar los siguientes objetivos educativos:</p>
+            
+            <div class="objetivo-card">
+                <div class="objetivo-icon">
+                    <i class="fas fa-puzzle-piece"></i>
+                </div>
+                <div class="objetivo-content">
+                    <h3>Resolución Integrada de Problemas</h3>
+                    <p>Desarrollar la capacidad de los estudiantes para aplicar el pensamiento computacional y crítico en la resolución de problemas complejos.</p>
+                </div>
+            </div>
+            
+            <div class="objetivo-card">
+                <div class="objetivo-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <div class="objetivo-content">
+                    <h3>Integración de Habilidades</h3>
+                    <p>Fomentar la integración de habilidades de pensamiento computacional y crítico en el proceso de aprendizaje.</p>
+                </div>
+            </div>
+            
+            <div class="objetivo-card">
+                <div class="objetivo-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="objetivo-content">
+                    <h3>Reflexión y Aplicación</h3>
+                    <p>Promover la reflexión crítica y la aplicación de conceptos de computación en diversos contextos.</p>
+                </div>
+            </div>
+            
+            <div class="objetivo-card">
+                <div class="objetivo-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="objetivo-content">
+                    <h3>Formación Docente</h3>
+                    <p>Capacitar a los profesores en la integración de estas habilidades en sus clases.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tematicas" id="tematicas">
+        <div class="container">
+            <h2 class="section-title">Temáticas</h2>
+            <p class="section-subtitle">Explora las diferentes áreas que abarca nuestra plataforma:</p>
+            
+            <div class="tematicas-container">
+                <div class="tematica-tag" data-info="pc">Pensamiento Computacional</div>
+                <div class="tematica-tag" data-info="pcrit">Pensamiento Crítico</div>
+                <div class="tematica-tag" data-info="rp">Resolución de Problemas</div>
+                <div class="tematica-tag" data-info="algprog">Algoritmos y Programación</div>
+                <div class="tematica-tag" data-info="ad">Análisis de Datos</div>
+                <div class="tematica-tag" data-info="ec">Evaluación Crítica</div>
+                <div class="tematica-tag" data-info="log">Lógica</div>
+                <div class="tematica-tag" data-info="ped">Pedagogía</div>
+                <div class="tematica-tag" data-info="tedu">Tecnología Educativa</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="recursos" id="recursos">
+        <div class="container">
+            <h2 class="section-title">Recursos Educativos</h2>
+            <p class="section-subtitle">Descubre nuestros materiales para estudiantes y docentes:</p>
+            
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="estudiantes">Para Estudiantes</button>
+                <button class="tab-btn" data-tab="docentes">Para Docentes</button>
+                <button class="tab-btn" data-tab="actividades">Actividades</button>
+            </div>
+            
+            <div class="tab-content active" id="estudiantes">
+                <div class="recurso-card">
+                    <div class="recurso-image">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="recurso-content">
+                        <h3 class="recurso-title">Desafíos de Programación</h3>
+                        <p>Serie de ejercicios que combinan la lógica computacional con el análisis crítico para resolver problemas de programación.</p>
+                        <a href="#" class="btn btn-primary">Ver Desafíos</a>
+                    </div>
+                </div>
+                
+                <div class="recurso-card">
+                    <div class="recurso-image">
+                        <i class="fas fa-chess"></i>
+                    </div>
+                    <div class="recurso-content">
+                        <h3 class="recurso-title">Juegos de Razonamiento</h3>
+                        <p>Actividades lúdicas que desarrollan el pensamiento lógico y crítico a través de retos divertidos.</p>
+                        <a href="#" class="btn btn-primary">Jugar Ahora</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="docentes">
+                <div class="recurso-card">
+                    <div class="recurso-image">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="recurso-content">
+                        <h3 class="recurso-title">Guías Didácticas</h3>
+                        <p>Recursos para implementar actividades de pensamiento crítico-computacional en el aula, con planes de lección y materiales de apoyo.</p>
+                        <a href="#" class="btn btn-primary">Descargar Guías</a>
+                    </div>
+                </div>
+                
+                <div class="recurso-card">
+                    <div class="recurso-image">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="recurso-content">
+                        <h3 class="recurso-title">Herramientas de Evaluación</h3>
+                        <p>Instrumentos para medir el progreso de los estudiantes en el desarrollo de habilidades de pensamiento crítico y computacional.</p>
+                        <a href="#" class="btn btn-primary">Acceder a Herramientas</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="actividades">
+                <div class="recurso-card">
+                    <div class="recurso-image">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="recurso-content">
+                        <h3 class="recurso-title">Proyectos Colaborativos</h3>
+                        <p>Actividades de aprendizaje basado en proyectos que requieren colaboración y aplicación de pensamiento crítico-computacional.</p>
+                        <a href="#" class="btn btn-primary">Ver Proyectos</a>
+                    </div>
+                </div>
+                
+                <div class="recurso-card">
+                    <div class="recurso-image">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="recurso-content">
+                        <h3 class="recurso-title">Talleres Virtuales</h3>
+                        <p>Sesiones interactivas para desarrollar habilidades específicas relacionadas con el pensamiento computacional y crítico.</p>
+                        <a href="#" class="btn btn-primary">Inscribirse</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>¡Comienza tu viaje hacia el pensamiento crítico-computacional!</h2>
+                <p>Regístrate ahora para acceder a todos nuestros recursos educativos y comenzar a desarrollar habilidades esenciales para el futuro.</p>
+                <a href="#" class="btn">Registrarse Gratis</a>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>CritComp</h3>
+                    <p>Plataforma interactiva para el desarrollo del pensamiento crítico y computacional en estudiantes de todos los niveles.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <a href="#inicio">Inicio</a>
+                    <a href="#objetivos">Objetivos</a>
+                    <a href="#tematicas">Temáticas</a>
+                    <a href="#recursos">Recursos</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Recursos</h3>
+                    <a href="#">Para Estudiantes</a>
+                    <a href="#">Para Docentes</a>
+                    <a href="#">Actividades</a>
+                    <a href="#">Blog</a>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <p><i class="fas fa-envelope"></i> info@critcomp.edu</p>
+                    <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Calle Educación 123, Ciudad</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 CritComp - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modales -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeLoginModal">&times;</span>
+            <h2>Iniciar Sesión</h2>
+            <form id="loginForm">
+                <div style="margin-bottom: 1rem;">
+                    <label for="email" style="display: block; margin-bottom: 0.5rem;">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;">
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="password" style="display: block; margin-bottom: 0.5rem;">Contraseña</label>
+                    <input type="password" id="password" name="password" required style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 5px;">
+                </div>
+
+
