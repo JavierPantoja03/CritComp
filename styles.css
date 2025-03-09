@@ -236,3 +236,89 @@ nav {
     background-color: var(--accent-color);
     transform: scale(1.05);
 }
+
+/* Contact Form Styles (Agregado aquí) */
+.contact-form {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.contact-form h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: var(--dark-color);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: var(--light-color);
+}
+
+.form-group textarea {
+    resize: vertical;
+    height: 150px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.form-group .error {
+    color: #e74c3c;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.objetivos {
+    padding: 5rem 0;
+    background-color: var(--white);
+}
+
+.recursos {
+    padding: 5rem 0;
+    background-color: #f8f9fa;
+}
+
+.footer {
+    background-color: var(--dark-color);
+    color: var(--white);
+    padding: 3rem 0;
+}
+
+.cta {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    color: var(--white);
+    text-align: center;
+}
+
+.footer {
+    background-color: var(--dark-color);
+    color: var(--white);
+    padding: 3rem 0;
+}
